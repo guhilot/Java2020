@@ -3,23 +3,44 @@ package edu.pdx.cs410J.guhilot;
 import edu.pdx.cs410J.AbstractPhoneCall;
 
 public class PhoneCall extends AbstractPhoneCall {
+  String Caller;
+  String Callee;
+  String Start;
+  String Stop;
+  public PhoneCall(String callerNum, String calleeNum, String start, String stop)
+  {
+    Caller = callerNum;
+    Callee = calleeNum;
+    Start = start;
+    Stop = stop;
+  }
   @Override
-  public String getCaller() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+  public String getCaller()
+  {
+    return Caller;
+    //throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
   @Override
-  public String getCallee() {
-    return "This method is not implemented yet";
+  public String getCallee()
+  {
+    return Callee;
+    //return "This method is not implemented yet";
   }
 
   @Override
-  public String getStartTimeString() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+  public String getStartTimeString()
+
+  {
+    return Start;
+    //throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
   @Override
-  public String getEndTimeString() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+  public String getEndTimeString()
+
+  {
+    return Stop;
+    //throw new UnsupportedOperationException("This method is not implemented yet");
   }
 }
