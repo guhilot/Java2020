@@ -19,14 +19,38 @@ public class PhoneCallTest {
 //  }
 
   @Test
+  public void getCallerNeedsToBeImplemented(){
+    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "111", "222");
+    assertThat(call.getCaller(), not(nullValue()));
+  }
+
+  @Test
+  public void getCalleeNeedsToBeImplemented(){
+    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "111", "222");
+    assertThat(call.getCallee(), not(nullValue()));
+  }
+
+  @Test
+  public void invalidCallerNumber(){
+    PhoneCall call = new PhoneCall("ABCD", "345-876-3456", "111", "222");
+    assertThat(call.getCaller(), not(nullValue()));
+  }
+
+  @Test
+  public void invalidCaleeNumber(){
+    PhoneCall call = new PhoneCall("503-449-7833", "ABCD", "111", "222");
+    assertThat(call.getCallee(), not(nullValue()));
+  }
+
+  @Test
   public void initiallyAllPhoneCallsHaveTheSameCallee() {
-    PhoneCall call = new PhoneCall("999", "888555", "111", "222");
-    assertThat(call.getCallee(), containsString("88"));
+    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "111", "222");
+    assertThat(call.getCallee(), containsString("34"));
   }
 
   @Test
   public void forProject1ItIsOkayIfGetStartTimeReturnsNull() {
-    PhoneCall call = new PhoneCall("999", "555", "111", "222");
+    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "111", "222");
     assertThat(call.getStartTime(), is(nullValue()));
   }
   

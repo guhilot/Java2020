@@ -10,8 +10,9 @@ public class Project1 {
     PhoneBill bill = new PhoneBill(args[0]);
 
     bill.addPhoneCall(call);
-
+    System.out.println(bill.getPhoneCalls());
     System.exit(1);
   }
 
 }
+
