@@ -10,7 +10,15 @@ public class Project1 {
     PhoneBill bill = new PhoneBill(args[0]);
 
     bill.addPhoneCall(call);
-    System.out.println(bill.getPhoneCalls());
+
+    if (args[5].equals("-print")) {
+      call.printCaller();
+    }
+    else{
+      System.out.println("Missing command line arguments");
+    }
+
+    //System.out.println(bill.getPhoneCalls());
     System.exit(1);
   }
 

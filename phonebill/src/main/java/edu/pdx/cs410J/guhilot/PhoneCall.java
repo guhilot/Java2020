@@ -78,4 +78,9 @@ public class PhoneCall extends AbstractPhoneCall {
   {
     return Stop;
   }
+
+  public void printCaller()
+  {
+    System.out.println(toString());
+  }
 }
