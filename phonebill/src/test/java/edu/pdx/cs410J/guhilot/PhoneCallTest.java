@@ -12,11 +12,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class PhoneCallTest {
 
-//  @Test(expected = UnsupportedOperationException.class)
-//  public void getStartTimeStringNeedsToBeImplemented() {
-//    PhoneCall call = new PhoneCall( "999",  "555", "111", "222");
-//    call.getStartTimeString();
-//  }
+
+  //(expected = UnsupportedOperationException.class)
+  @Test(expected = UnsupportedOperationException.class)
+  public void getStartTimeStringNeedsToBeImplemented() {
+    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "", "222");
+    call.getStartTimeString();
+  }
 
   @Test
   public void getCallerNeedsToBeImplemented(){

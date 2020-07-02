@@ -70,7 +70,14 @@ public class PhoneCall extends AbstractPhoneCall {
   @Override
   public String getStartTimeString()
   {
-    return Start;
+    if(this.Start == "")
+    {
+      throw new UnsupportedOperationException("No Params provided");
+    }
+    else{
+      return Start;
+    }
+
   }
 
   @Override

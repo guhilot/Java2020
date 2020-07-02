@@ -23,10 +23,10 @@ public class Project1IT extends InvokeMainTestCase {
    * Tests that invoking the main method with no arguments issues an error
    */
   @Test
-  public void testNoCommandLineArguments() {
-    MainMethodResult result = invokeMain();
-    assertThat(result.getExitCode(), equalTo(1));
-    assertThat(result.getTextWrittenToStandardError(), containsString("Missing command line arguments"));
+  public void testNoCommandLineArguments(){
+      MainMethodResult result = invokeMain();
+      assertThat(result.getExitCode(), equalTo(1));
+      assertThat(result.getTextWrittenToStandardError(), containsString("No arguments!"));
   }
 
 }
