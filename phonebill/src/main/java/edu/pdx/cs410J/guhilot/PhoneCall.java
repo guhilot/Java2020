@@ -3,6 +3,10 @@ package edu.pdx.cs410J.guhilot;
 import edu.pdx.cs410J.AbstractPhoneCall;
 
 import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
+
 
 /**
  * The <code>PhoneCall</code> class extends the <code>AbstractPhoneCall</code> class which
@@ -14,7 +18,9 @@ import java.util.regex.Pattern;
 
 import static java.time.format.DateTimeFormatter.ofPattern;
 
-public class PhoneCall extends AbstractPhoneCall {
+public class PhoneCall<pattern, TIME12HOURS_PATTERN> extends AbstractPhoneCall {
+  private final String Start_time;
+  private final String End_time;
   /**
    * Stores the caller's phone number in the format xxx-xxx-xxxx.
    */
@@ -32,27 +38,92 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   private String Stop;
 
+  /**
+   * Phone number pattern
+   */
   public static final Pattern NumPattern = Pattern.compile("\\d{3}-\\d{3}-\\d{4}");
 
 
-  public PhoneCall(String callerNum, String calleeNum, String start, String stop){
+  /**
+   * constructor
+   * @param callerNum
+   * @param calleeNum
+   * @param start
+   * @param timeStart
+   * @param stop
+   * @param timeEnd
+   */
+  public PhoneCall(String callerNum, String calleeNum, String start, String timeStart, String stop, String timeEnd){
     this.Caller = validateNumber(callerNum);
     this.Callee = validateNumber(calleeNum);
-    this.Start = start;
-    this.Stop = stop;
+    this.Start = validateJavaDate(start);
+    this.Stop = validateJavaDate(stop);
+    this.Start_time = timeStart;
+    this.End_time = timeEnd;
   }
 
+  /**
+   *
+   * @param input the phone number
+   * @return the phone number if in correct format or returns Invalid number
+   */
   private String validateNumber(String input){
     var matcher = NumPattern.matcher(input);
 
     if (!matcher.matches()) {
       //throw new ParserException("Invalid phone number: " + input);
       System.out.println("Invalid phone number: " + input);
+      return "Invalid ###";
+    }
+    else{
+      return input;
     }
 
-    return input;
   }
 
+  /**
+   *
+   * @param strDate the date call was initiated
+   * @return returns date if in correct format or null in incorrect
+   */
+  public static String validateJavaDate(String strDate)
+  {
+    /* Check if date is 'null' */
+    if (strDate.trim().equals(""))
+    {
+      return "";
+    }
+    /* Date is not 'null' */
+    else
+    {
+      /*
+       * Set preferred date format,
+       * For example MM-dd-yyyy, MM.dd.yyyy,dd.MM.yyyy etc.*/
+      SimpleDateFormat sdfrmt = new SimpleDateFormat("MM/dd/yyyy");
+      sdfrmt.setLenient(false);
+      /* Create Date object
+       * parse the string into date
+       */
+      try
+      {
+        Date javaDate = sdfrmt.parse(strDate);
+        //System.out.println(strDate+" is valid date format");
+      }
+      /* Date format is invalid */
+      catch (ParseException e)
+      {
+        System.out.println(strDate+" is Invalid Date format");
+        return "";
+      }
+      /* Return true if date format is valid */
+      return strDate;
+    }
+  }
+
+  /**
+   *
+   * @return returns the caller number
+   */
   @Override
   public String getCaller()
   {
@@ -60,34 +131,49 @@ public class PhoneCall extends AbstractPhoneCall {
     //throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
+  /**
+   *
+   * @return the calee phone number
+   */
   @Override
   public String getCallee()
   {
     return Callee;
-    //return "This method is not implemented yet";
   }
 
+  /**
+   *
+   * @return the concatinated start date and time call was made
+   */
   @Override
   public String getStartTimeString()
   {
-    if(this.Start == "")
+    if(this.Start == "" || this.Start_time == "")
     {
-      throw new UnsupportedOperationException("No Params provided");
+      throw new UnsupportedOperationException("Invalid Date format");
     }
     else{
-      return Start;
+      return Start.concat(" ").concat(Start_time);
     }
-
   }
 
+  /**
+   *
+   * @return the concatinated end date and time call was made
+   */
   @Override
   public String getEndTimeString()
   {
-    return Stop;
+    return Stop.concat(" ").concat(End_time);
   }
 
+  /**
+   * Prints call details to screen
+   */
   public void printCaller()
   {
+    if(this.Caller != "Invalid ###" && this.Callee != "Invalid ###")
     System.out.println(toString());
   }
+
 }

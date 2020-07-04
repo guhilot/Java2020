@@ -8,6 +8,9 @@ import static org.hamcrest.core.IsNull.nullValue;
 
 public class PhoneBillTest {
 
+    /**
+     * Tests to check customer name is not null
+     */
     @Test
     public void getCustomer() {
         var name = "name";
@@ -29,7 +32,4 @@ public class PhoneBillTest {
 
         assertTrue(calls.isEmpty());
     }
-
-
-
 }

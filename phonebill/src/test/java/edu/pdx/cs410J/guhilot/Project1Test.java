@@ -1,5 +1,6 @@
 package edu.pdx.cs410J.guhilot;
 
+import edu.pdx.cs410J.InvokeMainTestCase;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -15,7 +16,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * from {@link Project1IT} which is an integration test (and can handle the calls
  * to {@link System#exit(int)} and the like.
  */
-public class Project1Test {
+public class Project1Test extends InvokeMainTestCase {
+
+  private MainMethodResult invokeMain(String... args) {
+    return invokeMain( Project1.class, args );
+  }
 
   @Test
   public void readmeCanBeReadAsResource() throws IOException {
@@ -28,4 +33,35 @@ public class Project1Test {
       assertThat(line, containsString("This is a README file!"));
     }
   }
+
+  /**
+   * Test to check when there are no cmd line args
+   */
+  @Test
+  public void testNoCommandLineArguments(){
+    MainMethodResult result = invokeMain();
+    assertThat(result.getExitCode(), equalTo(1));
+    assertThat(result.getTextWrittenToStandardError(), containsString("No arguments!"));
+  }
+
+  /**
+   * Test to verify display message is same as inputed cmd line args
+   */
+  @Test
+  public void displayMSG() {
+    MainMethodResult result = invokeMain(new String[] {"Vikram", "503-449-7833", "234-234-2345", "01/01/2020", "01:00 am", "01/01/2020", "02:00 am", "-print", "-readme"});
+    assertThat(result.getExitCode(), equalTo(1));
+    assertThat(result.getTextWrittenToStandardOut(), containsString("Phone call from 503-449-7833 to 234-234-2345 from 01/01/2020 01:00 am to 01/01/2020 02:00 am"));
+  }
+
+  /**
+   * Test to check when there are too many cmd line args
+   */
+  @Test
+  public void tooManyCLA() {
+    MainMethodResult result = invokeMain(new String[]{"Vikram", "503-449-7833", "234-234-2345", "01/01/2020", "01:00 AM", "01/01/2020", "02:00 AM", "-print", "-readme", "hgfftg"});
+    assertThat(result.getExitCode(), equalTo(1));
+    assertThat(result.getTextWrittenToStandardError(), containsString("Too many args"));
+  }
+
 }
