@@ -78,5 +78,18 @@ public class PhoneCallTest {
     PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "01/01/2020", "1:00 am", "01/01/2020", "1:00 am");
     assertThat(call.getStartTime(), is(nullValue()));
   }
+
+//  @Test
+//  public void testDateformat(){
+//    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", "", "1:00 am", "01/01/2020", "1:00 am");
+//    assertThat(call.validateJavaDate(""), containsString(""));
+//  }
+//
+//  @Test(expected = NullPointerException.class)
+//  public void testDateformatNull(){
+//    PhoneCall call = new PhoneCall("503-449-7833", "345-876-3456", null, "1:00 am", "01/01/2020", "1:00 am");
+//    //assertThat(call.validateJavaDate(null), is(nullValue()));
+//    assertThat(call.validateJavaDate(null), containsString("Too many args"));
+//  }
   
 }

@@ -71,7 +71,6 @@ public class PhoneCall<pattern, TIME12HOURS_PATTERN> extends AbstractPhoneCall {
     var matcher = NumPattern.matcher(input);
 
     if (!matcher.matches()) {
-      //throw new ParserException("Invalid phone number: " + input);
       System.out.println("Invalid phone number: " + input);
       return "Invalid ###";
     }
@@ -96,18 +95,11 @@ public class PhoneCall<pattern, TIME12HOURS_PATTERN> extends AbstractPhoneCall {
     /* Date is not 'null' */
     else
     {
-      /*
-       * Set preferred date format,
-       * For example MM-dd-yyyy, MM.dd.yyyy,dd.MM.yyyy etc.*/
       SimpleDateFormat sdfrmt = new SimpleDateFormat("MM/dd/yyyy");
       sdfrmt.setLenient(false);
-      /* Create Date object
-       * parse the string into date
-       */
       try
       {
         Date javaDate = sdfrmt.parse(strDate);
-        //System.out.println(strDate+" is valid date format");
       }
       /* Date format is invalid */
       catch (ParseException e)
@@ -115,7 +107,6 @@ public class PhoneCall<pattern, TIME12HOURS_PATTERN> extends AbstractPhoneCall {
         System.out.println(strDate+" is Invalid Date format");
         return "";
       }
-      /* Return true if date format is valid */
       return strDate;
     }
   }
