@@ -33,7 +33,7 @@ public class Project1 {
             System.out.println("Missing cmd line args/text file to read from");
             System.exit(1);
         } else if (args.length == 9 && args[7].equals("-textFile") && args[8].contains(".txt")) {
-            TextParser parse = new TextParser(args[8], args[0]);
+            TextParser parse = new TextParser(args[8], args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             TextDumper dumper = new TextDumper(args[8]);
             AbstractPhoneBill parseBill = parse.parse();
             PhoneCall call = new PhoneCall(args[1], args[2], args[3], args[4], args[5], args[6]);// Refer to one of Dave's classes so that we can be sure it is on the classpath
@@ -42,7 +42,7 @@ public class Project1 {
             dumper.dump(parseBill);
             System.exit(1);
         } else if (args.length == 10 && args[8].equals("-textFile") && args[9].contains(".txt")) {
-            TextParser parse = new TextParser(args[9], args[0]);
+            TextParser parse = new TextParser(args[9], args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             TextDumper dumper = new TextDumper(args[9]);
             AbstractPhoneBill parseBill = parse.parse();
             PhoneCall call = new PhoneCall(args[1], args[2], args[3], args[4], args[5], args[6]);// Refer to one of Dave's classes so that we can be sure it is on the classpath
@@ -51,7 +51,7 @@ public class Project1 {
             dumper.dump(parseBill);
             System.exit(1);
         } else if (args.length == 11 && args[9].equals("-textFile") && args[10].contains(".txt")) {
-            TextParser parse = new TextParser(args[10], args[0]);
+            TextParser parse = new TextParser(args[10], args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             TextDumper dumper = new TextDumper(args[10]);
             AbstractPhoneBill parseBill = parse.parse();
             PhoneCall call = new PhoneCall(args[1], args[2], args[3], args[4], args[5], args[6]);// Refer to one of Dave's classes so that we can be sure it is on the classpath

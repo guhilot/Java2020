@@ -27,6 +27,7 @@ public class TextDumper implements PhoneBillDumper {
         out.write("");
         out.write(abstractPhoneBill.getCustomer());
         for(int i = 0; i < arr1.size(); ++i){
+            System.out.println(arr1.get(i));
             phoneCalls[i] = arr1.get(i).toString();
             out.write("\n");
             out.write(phoneCalls[i]);
