@@ -16,12 +16,26 @@ public class Project1 {
         /**
          * Checks the length of command line arguments to provide message to user
          */
-
         if (args.length == 0) {
             System.err.println("No arguments!");
             System.exit(1);
         }
+        /**
+         * If there are 2 cmd line args, checks if file provided, reads from file and displays
+         * to UI
+         */
+        if(args.length == 2 && args[0].equals("-textFile") && args[1].contains(".txt")){
+            TextParser parse = new TextParser(args[1]);
+            TextDumper dumper = new TextDumper(args[1]);
+            AbstractPhoneBill parseBill = parse.parse();
+            System.out.println(parseBill.getPhoneCalls());
+            System.exit(1);
+        }
 
+        /**
+         * if one arg is passed in cmd line then it check if it is read me if true
+         * prints readme to screen
+         */
         if (args.length == 1 && (args[0].equals("-README") || args[0].equals("-readme"))) {
             readme();
         } else if (args.length < 7) {
@@ -29,6 +43,12 @@ public class Project1 {
             System.exit(1);
         }
 
+        /**
+         * if cmd line args are equal to 8 or greater, check if
+         * -print
+         * -readme or
+         * -textFile file args present and then execute
+         */
         if (args.length == 8 && args[7].equals("-textFile")) {
             System.out.println("Missing cmd line args/text file to read from");
             System.exit(1);
@@ -61,6 +81,12 @@ public class Project1 {
             System.exit(1);
         }
 
+        /**
+         * if cmd line args are equal to 8 or greater, check if
+         * -print
+         * -readme
+         * file args present and then execute
+         */
         if (args.length == 8 && args[7].equals("-print")) {
             PhoneCall call = new PhoneCall(args[1], args[2], args[3], args[4], args[5], args[6]);// Refer to one of Dave's classes so that we can be sure it is on the classpath
             PhoneBill bill = new PhoneBill(args[0]);
@@ -128,9 +154,14 @@ public class Project1 {
         } else if (args.length == 11 && (args[10].equals("-README") || args[10].equals("-readme"))) {
             readme();
         }
-
+        else if(args.length > 11){
+            System.out.println("Too many args");
+        }
     }
 
+    /**
+     * prints readme when called
+     */
     public static void readme() {
         System.out.println();
         System.out.println("Customer is the caller");

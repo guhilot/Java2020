@@ -11,13 +11,24 @@ import java.util.ArrayList;
 
 public class TextDumper implements PhoneBillDumper {
 
+    /**
+     * file name passed in cmd is stored here
+     */
     String filename;
 
+    /**
+     * constructor
+     * @param fname
+     */
     public TextDumper(String fname){
         this.filename = fname;
     }
 
-
+    /**
+     * implements overidden method to write to external file
+     * @param abstractPhoneBill
+     * @throws IOException
+     */
     @Override
     public void dump(AbstractPhoneBill abstractPhoneBill) throws IOException {
         ArrayList arr1 = (ArrayList) abstractPhoneBill.getPhoneCalls();

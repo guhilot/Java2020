@@ -12,8 +12,22 @@ import java.util.Scanner;
 
 public class TextParser implements PhoneBillParser {
 
+    /**
+     * Stores passed to local variables
+     */
     String filename, custName, Caller, Calee, sDate, sTime, sDate1, sTime1;
 
+    /**
+     * overridden constructor
+     * @param fiName :filename
+     * @param cuName : caller name
+     * @param caller : caller phone num
+     * @param calee : calee ph no
+     * @param cDate : date
+     * @param cTime : time
+     * @param cDate1
+     * @param cTime1
+     */
     public TextParser(String fiName, String cuName, String caller, String calee, String cDate, String cTime, String cDate1, String cTime1){
         this.filename = fiName;
         this.custName = cuName;
@@ -25,7 +39,21 @@ public class TextParser implements PhoneBillParser {
         this.sTime1 = cTime1;
     }
 
+    /**
+     * overridden constructor
+     * @param fiName
+     */
+    public TextParser(String fiName){
+        this.filename = fiName;
+    }
 
+    /**
+     * the parse fn checks to see if file exists, if not creates it
+     * if file exist and is empty writes to it
+     * oif file has contents read and then write new call to it
+     * @return bill with phone calls
+     * @throws ParserException
+     */
     @Override
     public AbstractPhoneBill parse() throws ParserException {
         Scanner sc = null;
